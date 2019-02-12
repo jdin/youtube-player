@@ -12,6 +12,7 @@
   "builds": [
     {
       "name": "esm-bundled",
+      "basePath": "/youtube-player/",
       "browserCapabilities": [
         "es2015",
         "modules"

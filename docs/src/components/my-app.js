@@ -98,7 +98,7 @@
                 `:null}
             <paper-ripple></paper-ripple>
           </div>
-        `}onClick(){this.isPlaying=!0;setTimeout(()=>{let frame=this.shadowRoot.getElementById("frame");play(frame,this.src,this.height,this.width,()=>{console.log("set isplaying to false for "+this.src);this.isPlaying=!1})})}firstUpdated(props){this.height=window.document.body.clientHeight-40;window.addEventListener("resize",()=>{this.height=window.document.body.clientHeight-40})}}customElements.define("my-video",MyVideo);var myVideo={MyVideo:MyVideo};class MyApp extends LitElement{static get properties(){return{videos:Array}}constructor(){super();this.videos=["k94fIrZwea8","o0H2feTtSdA","IOcPdQ2UDus","G-k7NRfBunA","JLgpBqcbrKo","6k5pzVABufg","mEHXegyJjLY","BlAHbLv7CC4","vSgz8rDsvEQ","TmGClRFD04E","DWQwXdkgqf0","t470q7Eq6DI","LF3VXIxJPlk"]}render(){return html$1`
+        `}onClick(){this.isPlaying=!0;setTimeout(()=>{let frame=this.shadowRoot.getElementById("frame");play(frame,this.src,this.height,this.width,()=>{console.log("set isplaying to false for "+this.src);this.isPlaying=!1})})}firstUpdated(props){this.height=window.document.body.clientHeight-40;window.addEventListener("resize",()=>{this.height=window.document.body.clientHeight-40})}}customElements.define("my-video",MyVideo);var myVideo={MyVideo:MyVideo};class MyApp extends LitElement{static get properties(){return{videos:Array}}constructor(){super();this.videos=["-fnOyKtia6U","BuF4hfz86W4","gJBt3GBWQvc","H2i6y_8W-6o","_-EFvlwjNDY","dA-e0C9KlEw","qEWJUTX1LP0","vz2BUBuGfJw","FnBVM9dppd4","wg3aDEgPfMM","BSLXQhXhMYk","90pOcRLSW1Q","EeKSs8JNcgw","iBqVzQfj7g0","pl2acnQycxs"]}render(){return html$1`
     <style>
       .container {
         display: flex;

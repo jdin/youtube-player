@@ -98,7 +98,7 @@
                 `:null}
             <paper-ripple></paper-ripple>
           </div>
-        `}onClick(){this.isPlaying=!0;setTimeout(()=>{let frame=this.shadowRoot.getElementById("frame");play(frame,this.src,this.height,this.width,()=>{console.log("set isplaying to false for "+this.src);this.isPlaying=!1})})}firstUpdated(props){this.height=window.document.body.clientHeight-40;window.addEventListener("resize",()=>{this.height=window.document.body.clientHeight-40})}}customElements.define("my-video",MyVideo);var myVideo={MyVideo:MyVideo};class MyApp extends LitElement{static get properties(){return{videos:Array}}constructor(){super();this.videos=["k94fIrZwea8","o0H2feTtSdA","IOcPdQ2UDus","G-k7NRfBunA","JLgpBqcbrKo","6k5pzVABufg"]}render(){return html$1`
+        `}onClick(){this.isPlaying=!0;setTimeout(()=>{let frame=this.shadowRoot.getElementById("frame");play(frame,this.src,this.height,this.width,()=>{console.log("set isplaying to false for "+this.src);this.isPlaying=!1})})}firstUpdated(props){this.height=window.document.body.clientHeight-40;window.addEventListener("resize",()=>{this.height=window.document.body.clientHeight-40})}}customElements.define("my-video",MyVideo);var myVideo={MyVideo:MyVideo};class MyApp extends LitElement{static get properties(){return{videos:Array}}constructor(){super();this.videos=["k94fIrZwea8","o0H2feTtSdA","IOcPdQ2UDus","G-k7NRfBunA","JLgpBqcbrKo","6k5pzVABufg","mEHXegyJjLY","BlAHbLv7CC4","vSgz8rDsvEQ","TmGClRFD04E","DWQwXdkgqf0","t470q7Eq6DI","LF3VXIxJPlk"]}render(){return html$1`
     <style>
       .container {
         display: flex;

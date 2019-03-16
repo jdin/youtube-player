@@ -12,10 +12,7 @@ class MyApp extends LitElement {
 
     constructor() {
         super();
-        this.videos = ["5R93ozDDPBQ", "X8JTgQvKZoA", "0YFnl3Sz1Dw", "KSzXzBGBw3M", "meAXdl8p_-A",
-            "DXtl8FjAQXo", "AqardKbxVYM", "NBk0H-xTyJw", "bTAmiPvYmPk", "NlvsoWv5ZvE",
-            "7eb_7F1zUW0", "h8ckFCZg5fE", "vIUiT0OStVo", "67FJ30wsG28",
-            "2Gtql73FnPE"];//TODO get automatically
+        this.videos = ["HxbEiuJvLrA", "O_7O-enyQ30", "YlqombdIprY", "3hNzjiGzUNc", "h_pVierzRNI", "alBUJk2rVKk", "oGRrTdbzPHE"];//TODO get automatically
     }
 
     render() {

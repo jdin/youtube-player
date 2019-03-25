@@ -98,7 +98,7 @@
                 `:null}
             <paper-ripple></paper-ripple>
           </div>
-        `}onClick(){this.isPlaying=!0;setTimeout(()=>{let frame=this.shadowRoot.getElementById("frame");play(frame,this.src,this.height,this.width,()=>{console.log("set isplaying to false for "+this.src);this.isPlaying=!1})})}firstUpdated(props){this.height=window.document.body.clientHeight-40;window.addEventListener("resize",()=>{this.height=window.document.body.clientHeight-40})}}customElements.define("my-video",MyVideo);var myVideo={MyVideo:MyVideo};class MyApp extends LitElement{static get properties(){return{videos:Array}}constructor(){super();this.videos=["HxbEiuJvLrA","O_7O-enyQ30","YlqombdIprY","3hNzjiGzUNc","h_pVierzRNI","alBUJk2rVKk","oGRrTdbzPHE"]}render(){return html$1`
+        `}onClick(){this.isPlaying=!0;setTimeout(()=>{let frame=this.shadowRoot.getElementById("frame");play(frame,this.src,this.height,this.width,()=>{console.log("set isplaying to false for "+this.src);this.isPlaying=!1})})}firstUpdated(props){this.height=window.document.body.clientHeight-40;window.addEventListener("resize",()=>{this.height=window.document.body.clientHeight-40})}}customElements.define("my-video",MyVideo);var myVideo={MyVideo:MyVideo};class MyApp extends LitElement{static get properties(){return{videos:Array}}constructor(){super();this.videos=["VwUOKdyWpdA","6XUm9gLriKY","6e1_IEhLNKk","c_TkFeUnqt8","CkyGNOAZOjM","GEmywqDeygU","Ph2uktLM1yI","hIiZKTLVPow","y-Q5pC_8evU","j_PVxQxnK5k"]}render(){return html$1`
     <style>
       .container {
         display: flex;
@@ -107,12 +107,6 @@
       }
       .container > * {
         margin: 16px;
-      }
-
-      /* Wide layout: when the viewport width is bigger than 460px, layout
-      changes to a wide layout. */
-      @media (min-width: 460px) {
-
       }
     </style>
     <div class="container">

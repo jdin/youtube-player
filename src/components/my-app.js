@@ -12,7 +12,8 @@ class MyApp extends LitElement {
 
     constructor() {
         super();
-        this.videos = ["HxbEiuJvLrA", "O_7O-enyQ30", "YlqombdIprY", "3hNzjiGzUNc", "h_pVierzRNI", "alBUJk2rVKk", "oGRrTdbzPHE"];//TODO get automatically
+        this.videos = ["VwUOKdyWpdA", "6XUm9gLriKY", "6e1_IEhLNKk", "c_TkFeUnqt8", "CkyGNOAZOjM", "GEmywqDeygU",
+            "Ph2uktLM1yI", "hIiZKTLVPow", "y-Q5pC_8evU", "j_PVxQxnK5k"];//TODO get automatically
     }
 
     render() {
@@ -25,12 +26,6 @@ class MyApp extends LitElement {
       }
       .container > * {
         margin: 16px;
-      }
-
-      /* Wide layout: when the viewport width is bigger than 460px, layout
-      changes to a wide layout. */
-      @media (min-width: 460px) {
-
       }
     </style>
     <div class="container">

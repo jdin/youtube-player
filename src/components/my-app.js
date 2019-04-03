@@ -16,6 +16,23 @@ const idsPromise = fetch('https://www.googleapis.com/youtube/v3/search?part=id' 
 
 const videos = idsPromise.then( ids => ids.map(id => html`<my-video class="box" src=${id}></my-video>`));
 
+const wakeLock = async () => {
+    if ('getWakeLock' in navigator) {
+        try {
+            // Create a wake lock for the type we want.
+            const wakeLockObj = await navigator.getWakeLock('screen');
+            console.log('👍', 'getWakeLock', wakeLockObj);
+            wakeLockObj.createRequest();
+        } catch (ex) {
+            console.error('👎', 'getWakeLock', err);
+        }
+    } else {
+        console.log('no wakelock')
+    }
+};
+
+wakeLock();
+
 class MyApp extends LitElement {
     render() {
         return html`

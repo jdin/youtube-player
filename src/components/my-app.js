@@ -1,21 +1,22 @@
-import {html, LitElement} from '@polymer/lit-element';
+import {LitElement, html} from 'lit-element';
 import "@polymer/paper-ripple";
 import "./my-video";
+import { until} from "lit-html/directives/until";
+
+
+const idsPromise = fetch('https://www.googleapis.com/youtube/v3/search?part=id' +
+    '&channelId=UChEqdYH7NbCgE9aRJuACL3w&maxResults=50&type=video' +
+    '&publishedAfter=2019-04-03T00%3A00%3A00Z' +
+    '&key=AIzaSyDNad_BkgZoFz4PKwCLxEXwKM-fLA92dnk')
+    .then(resp => resp.json())
+    .then(v => v.items)
+    .then(array => array.map(video => video.id.videoId))
+    //.then(console.log);
+
+
+const videos = idsPromise.then( ids => ids.map(id => html`<my-video class="box" src=${id}></my-video>`));
 
 class MyApp extends LitElement {
-
-    static get properties() {
-        return {
-            videos: Array
-        }
-    }
-
-    constructor() {
-        super();
-        this.videos = ["6e1_IEhLNKk", "c_TkFeUnqt8", "CkyGNOAZOjM", "GEmywqDeygU",
-            "hIiZKTLVPow", "y-Q5pC_8evU", "j_PVxQxnK5k"];//TODO get automatically
-    }
-
     render() {
         return html`
     <style>
@@ -29,7 +30,7 @@ class MyApp extends LitElement {
       }
     </style>
     <div class="container">
-      ${this.videos.map((src) => html`<my-video class="box" src=${src}></my-video>`)}
+      ${until(videos, html`...`)}
     </div>
     `;
     }

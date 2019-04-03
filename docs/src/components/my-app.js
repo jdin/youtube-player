@@ -7734,13 +7734,11 @@ if(-1<index&&(state.lastRenderedIndex===void 0||index<state.lastRenderedIndex)){
                                *
                                *     const content = fetch('./content.txt').then(r => r.text());
                                *     html`${until(content, html`<span>Loading...</span>`)}`
-                               */var until$1={until:until};let player=null,prevCallback;function play(frame,videoId,height,width,stopRequestCallback){console.dir("play for "+videoId);if(player){prevCallback();// player.stopVideo();
-}prevCallback=stopRequestCallback;player=new YT.Player(frame,{// height: height,
-// width: width,
-// videoId: videoId,
-events:{onReady:()=>{console.log("here");console.log(player);player.playVideo()}}})}var player$1={play:play};class MyVideo extends LitElement{constructor(){super();this.height=320;this.src=null;this.isPlaying=!1}static get properties(){return{height:Number,src:String,isPlaying:Boolean}}get width(){return 16*this.height/9}render(){return html$1`
-          <style>
-            .box {
+                               */var until$1={until:until};let player=null,prevCallback;function play(frame,videoId,height,width,stopRequestCallback){console.log("play for "+videoId,"player",player,frame);if(player){player.stopVideo();prevCallback();// player.stopVideo();
+}prevCallback=stopRequestCallback;player=new YT.Player(frame,{height:height,width:width,videoId:videoId,events:{onReady:e=>{player=e.target;console.log("ready");player.playVideo();console.log("started");// TODO frame is wrong now
+const requestFullScreen=frame.requestFullScreen||frame.mozRequestFullScreen||frame.webkitRequestFullScreen;if(requestFullScreen){console.log("request fullscreen");//requestFullScreen.bind(frame)();
+}},onStateChange:event=>{console.log("state change; playing=",event.data===YT.PlayerState.PLAYING)}}})}var player$1={play:play};class MyVideo extends LitElement{constructor(){super();this.height=320;this.src=null;this.isPlaying=!1}static get properties(){return{height:Number,src:String,isPlaying:Boolean}}static get styles(){return css`
+          .box {
                 border: 1px solid gray;
                 border-radius: 5px;
                 overflow: hidden;
@@ -7755,16 +7753,14 @@ events:{onReady:()=>{console.log("here");console.log(player);player.playVideo()}
                 position: absolute;
                 left: -5000px;
             }
-          </style>
+        `}get width(){return 16*this.height/9}render(){return html$1`
           <div class="box" style="height: ${this.height}px; width: ${this.width}px" @click=${()=>this.onClick()}>
             <img style="display:${this.isPlaying?"none":"auto"}" width=${this.width} height=${this.height} 
                 src="https://img.youtube.com/vi/${this.src}/hqdefault.jpg"/>
                 ${this.isPlaying?html$1`
-                <iframe id="frame" 
+                <div id="frame" 
                 style="visibility:${this.isPlaying?"visible":"hidden"}" 
-                width=${this.width} 
-                height=${this.height} 
-                src="https://www.youtube.com/embed/${this.src}?rel=0&enablejsapi=1&origin=localhost&autoplay=1"></iframe>
+                ></div>
                 `:null}
             <paper-ripple></paper-ripple>
           </div>

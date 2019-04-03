@@ -1,4 +1,4 @@
-import {LitElement, html} from "lit-element";
+import {LitElement, html, css} from "lit-element";
 import "@polymer/paper-ripple";
 import {play} from "../player";
 
@@ -19,14 +19,9 @@ export class MyVideo extends LitElement {
         };
     }
 
-    get width() {
-        return this.height * 16/9;
-    }
-
-    render() {
-        return html`
-          <style>
-            .box {
+    static get styles() {
+        return css`
+          .box {
                 border: 1px solid gray;
                 border-radius: 5px;
                 overflow: hidden;
@@ -41,16 +36,22 @@ export class MyVideo extends LitElement {
                 position: absolute;
                 left: -5000px;
             }
-          </style>
+        `;
+    }
+
+    get width() {
+        return this.height * 16/9;
+    }
+
+    render() {
+        return html`
           <div class="box" style="height: ${this.height}px; width: ${this.width}px" @click=${() => this.onClick()}>
             <img style="display:${this.isPlaying ? 'none' : 'auto'}" width=${this.width} height=${this.height} 
                 src="https://img.youtube.com/vi/${this.src}/hqdefault.jpg"/>
                 ${this.isPlaying ? html`
-                <iframe id="frame" 
+                <div id="frame" 
                 style="visibility:${this.isPlaying ? 'visible' : 'hidden'}" 
-                width=${this.width} 
-                height=${this.height} 
-                src="https://www.youtube.com/embed/${this.src}?rel=0&enablejsapi=1&origin=localhost&autoplay=1"></iframe>
+                ></div>
                 `: null}
             <paper-ripple></paper-ripple>
           </div>

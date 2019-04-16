@@ -4,10 +4,11 @@ import "./my-video";
 import { until} from "lit-html/directives/until";
 
 
-const idsPromise = fetch('https://www.googleapis.com/youtube/v3/playlistItems?part=id&maxResults=50&playlistId=PLn0kOTV0__XZlNhrnUsVzNzA6XAgSm2rh&key=AIzaSyDNad_BkgZoFz4PKwCLxEXwKM-fLA92dnk')
+const idsPromise = fetch('https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&maxResults=50' +
+    '&playlistId=PLn0kOTV0__XZlNhrnUsVzNzA6XAgSm2rh&key=AIzaSyDNad_BkgZoFz4PKwCLxEXwKM-fLA92dnk')
     .then(resp => resp.json())
     .then(v => v.items)
-    .then(array => array.map(video => video.id.videoId))
+    .then(array => array.map(video => video.snippet.resourceId.videoId))
     //.then(console.log);
 
 

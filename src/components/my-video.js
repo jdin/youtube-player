@@ -21,12 +21,7 @@ export class MyVideo extends LitElement {
 
     static get styles() {
         return css`
-          .box {
-                border: 1px solid gray;
-                border-radius: 5px;
-                overflow: hidden;
-                position: relative;
-          }
+          :host { display:block; }
           video:-webkit-full-screen     { max-height: 100%; }
           video {
             width: 100%    !important;
@@ -63,7 +58,6 @@ export class MyVideo extends LitElement {
         setTimeout(() => {
             let frame = this.shadowRoot.getElementById("frame");
             play(frame, this.src, this.height, this.width, () => {
-                console.log('set isplaying to false for ' + this.src);
                 this.isPlaying = false;
                 // this.shadowRoot.removeChild(frame);
             })

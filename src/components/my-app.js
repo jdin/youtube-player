@@ -1,7 +1,7 @@
-import {LitElement, html} from 'lit-element';
+import {LitElement, html, css} from 'lit-element';
 import "@polymer/paper-ripple";
 import "./my-video";
-import { until} from "lit-html/directives/until";
+import {until} from "lit-html/directives/until";
 
 
 const idsPromise = fetch('https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&maxResults=50' +
@@ -9,45 +9,32 @@ const idsPromise = fetch('https://www.googleapis.com/youtube/v3/playlistItems?pa
     .then(resp => resp.json())
     .then(v => v.items)
     .then(array => array.map(video => video.snippet.resourceId.videoId))
-    //.then(console.log);
+//.then(console.log);
 
 
-const videos = idsPromise.then( ids => ids.map(id => html`<my-video class="box" src=${id}></my-video>`));
-
-const wakeLock = async () => {
-    if ('getWakeLock' in navigator) {
-        try {
-            // Create a wake lock for the type we want.
-            const wakeLockObj = await navigator.getWakeLock('screen');
-            console.log('👍', 'getWakeLock', wakeLockObj);
-            wakeLockObj.createRequest();
-        } catch (ex) {
-            console.error('👎', 'getWakeLock', err);
-        }
-    } else {
-        console.log('no wakelock')
-    }
-};
-
-wakeLock();
+const videos = idsPromise.then(ids => ids.map(id => html`<my-video class="box" src=${id}></my-video>`));
 
 class MyApp extends LitElement {
+
+    static get styles() {
+        return css`
+        :host { display:block; }
+        .container {
+          display: flex;
+          align-items: center;
+          flex-flow: nowrap;
+          padding: 19px 0;
+          overflow: scroll;
+        }
+        .container > .box {
+          margin: 0 50px;
+        }
+        .box:last-child { border-right: 50px solid transparent;}
+        `
+    }
+
     render() {
-        return html`
-    <style>
-      .container {
-        display: flex;
-        align-items: center;
-        flex-flow: nowrap;
-      }
-      .container > * {
-        margin: 16px;
-      }
-    </style>
-    <div class="container">
-      ${until(videos, html`...`)}
-    </div>
-    `;
+        return html`<div class="container">${until(videos, html`...`)}</div>`;
     }
 }
 

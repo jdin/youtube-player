@@ -2,8 +2,21 @@ let player = null;
 
 let prevCallback;
 
+const setFullscreen = doc => {
+    const requestFullScreen = doc.requestFullScreen || doc.mozRequestFullScreen || doc.webkitRequestFullScreen;
+    if (requestFullScreen) {
+        requestFullScreen.call(doc);
+    }
+};
+
+const cancelFullscreen = doc => {
+    const cancelFullScreen = doc.exitFullscreen || doc.mozCancelFullScreen || doc.webkitExitFullscreen || doc.msExitFullscreen;
+    if (cancelFullScreen) {
+        cancelFullScreen.call(doc);
+    }
+};
+
 export function play(frame, videoId, height, width, stopRequestCallback) {
-    console.log("play for " + videoId, 'player', player, frame);
     if (player) {
         player.stopVideo();
         prevCallback();
@@ -19,18 +32,15 @@ export function play(frame, videoId, height, width, stopRequestCallback) {
         events: {
             'onReady': (e) => {
                 player = e.target;
-                console.log('ready');
                 player.playVideo();
-                console.log('started');
-                // TODO frame is wrong now
-                const requestFullScreen = frame.requestFullScreen || frame.mozRequestFullScreen || frame.webkitRequestFullScreen;
-                if (requestFullScreen) {
-                    console.log('request fullscreen');
-                    //requestFullScreen.bind(frame)();
-                }
-            }  ,
+                setFullscreen(e.target.a);
+            },
             'onStateChange': (event) => {
-                console.log('state change; playing=', event.data === YT.PlayerState.PLAYING)
+                if (event.data === YT.PlayerState.PLAYING) {
+                    setFullscreen(event.target.a);
+                } else if (event.data === 2) {
+                    cancelFullscreen(window.document);
+                }
             }
         }
     });

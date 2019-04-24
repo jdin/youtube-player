@@ -37,7 +37,7 @@ export function play(frame, videoId, height, width, stopRequestCallback) {
             'onStateChange': (event) => {
                 if (event.data === YT.PlayerState.PLAYING) {
                     setFullscreen(event.target.a);
-                } else if (event.data === 2) {
+                } else if (event.data === 2 || event.data === 0) {
                     cancelFullscreen(window.document);
                     prevCallback();
                     player = null;

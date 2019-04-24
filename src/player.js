@@ -20,7 +20,6 @@ export function play(frame, videoId, height, width, stopRequestCallback) {
     if (player) {
         player.stopVideo();
         prevCallback();
-        // player.stopVideo();
     }
 
     prevCallback = stopRequestCallback;
@@ -33,13 +32,15 @@ export function play(frame, videoId, height, width, stopRequestCallback) {
             'onReady': (e) => {
                 player = e.target;
                 player.playVideo();
-                setFullscreen(e.target.a);
+                setFullscreen(player.a);
             },
             'onStateChange': (event) => {
                 if (event.data === YT.PlayerState.PLAYING) {
                     setFullscreen(event.target.a);
                 } else if (event.data === 2) {
                     cancelFullscreen(window.document);
+                    prevCallback();
+                    player = null;
                 }
             }
         }

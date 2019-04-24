@@ -57,10 +57,7 @@ export class MyVideo extends LitElement {
         this.isPlaying = true;
         setTimeout(() => {
             let frame = this.shadowRoot.getElementById("frame");
-            play(frame, this.src, this.height, this.width, () => {
-                this.isPlaying = false;
-                // this.shadowRoot.removeChild(frame);
-            })
+            play(frame, this.src, this.height, this.width, () => this.isPlaying = false)
         });
     }
 
